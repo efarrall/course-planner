@@ -1,70 +1,80 @@
 # Course Planner
 
-desktop app for planning courses and semesters. drag and drop courses between semesters, checks prerequisites, tracks credits.
+Desktop application for planning courses across semesters. Validates prerequisites, tracks credits, and manages course scheduling through a drag-and-drop interface.
 
-## what it does
+## Features
 
-- drag courses between semesters
-- validates prerequisites automatically
-- tracks credits per semester and total
-- auto-saves every 2 seconds to files
-- import/export course data
+- Drag and drop courses between semesters
+- Automatic prerequisite validation
+- Credit tracking per semester and total
+- Auto-saves to file system every 2 seconds after changes
+- Export data to dedicated exports folder
+- Import data with file picker
+- Manages multiple degree programs
 
-## setup
+## Setup
 
-### install
-
+Install dependencies:
 ```bash
 npm install
 ```
 
-### run
-
+Run the application:
 ```bash
 npm run electron:dev
 ```
 
-### create desktop shortcut (windows)
+### Desktop Shortcut (Windows)
 
+Create a desktop shortcut for easier access:
 ```bash
 powershell -ExecutionPolicy Bypass -File create-shortcut.ps1
 ```
 
-this creates a "Course Planner" shortcut on your desktop. double click it to launch.
+This creates a "Course Planner" shortcut on your desktop that launches the app.
 
-## file locations
+## Usage
 
-saves are stored in:
-```
-C:\Users\YourName\AppData\Roaming\course-planner\saves\
-```
+### Adding Courses
+Click "Add Course" to create a new course. Fill in:
+- Course code
+- Title
+- Credits
+- Level (Undergraduate/Graduate)
+- Prerequisites
+- Delivery mode
+- Semester restrictions
 
-exports go to:
-```
-C:\Users\YourName\AppData\Roaming\course-planner\exports\
-```
+### Managing Courses
+- Drag courses between semesters to reschedule
+- Courses start in the "Course Pool" and can be dragged to any semester
+- Prerequisites are validated in real-time
+- Violations appear at the top of the window
 
-## build installer
+### Auto-Save
+The application automatically saves to the file system 2 seconds after any change. No manual save required.
 
+### Export and Import
+- **Export**: Saves current data to the exports folder with timestamp
+- **Import**: Opens file picker starting in saves folder to load previous data
+
+## File Locations
+
+**Auto-saves:** `C:\Users\YourName\AppData\Roaming\course-planner\saves\`
+
+**Manual exports:** `C:\Users\YourName\AppData\Roaming\course-planner\exports\`
+
+Files are timestamped and stored as JSON.
+
+## Building
+
+Create a distributable installer:
 ```bash
 npm run electron:build
 ```
 
-creates installer in `dist/` folder
+Output will be in the `dist/` folder.
 
-## how to use
+## Technology
 
-1. click "Add Course" to create courses
-2. drag courses between semesters
-3. violations show up at the top if prerequisites aren't met
-4. auto-saves as you work
-5. export button saves to exports folder
-6. import button opens file picker in saves folder
-
-## tech stack
-
-- react
-- electron
-- tailwindcss
-
-works on my machine
+Built with React and Electron. Uses Node.js file system API for data persistence.
